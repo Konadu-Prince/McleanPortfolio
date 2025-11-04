@@ -1,6 +1,6 @@
-# Gyan Christian - Portfolio Website
+# Christian Gyan Agyekum - Portfolio Website
 
-A professional portfolio website showcasing the skills and projects of Gyan Christian, a Computer Science graduate from the University of Cape Coast (UCC), Accra, Ghana. Featuring expertise in networking administration, database management, cybersecurity, machine learning, 3D visualization, graphic design, and web design. Fluent in English, Twi, and Ga.
+A professional portfolio website showcasing the skills and projects of Christian Gyan Agyekum, a Computer Science graduate. Featuring expertise in networking administration, database management, cybersecurity, machine learning, 3D visualization, graphic design, web design, and content creation. Fluent in English, Twi, and Ga.
 
 ## Features
 
@@ -57,6 +57,20 @@ This website works on all modern browsers including:
 - Firefox
 - Safari
 - Edge
+
+## Contact
+
+- Email: christiangyanagyekum@gmail.com
+- Phone: 0241096942 / 0561888656 / 0504002693
+- WhatsApp: https://wa.me/233561888656
+
+## Social Media
+
+- Instagram: [@mclean_edge](https://www.instagram.com/mclean_edge)
+- Facebook: [@mclean_edge](https://www.facebook.com/share/1BpLnA2HTG)
+- Twitter: [@mclean__edge](https://x.com/mclean__edge)
+- TikTok: [@mclean_edge_studios](https://www.tiktok.com/@mclean_edge_studios)
+- YouTube: [Mclean Edge Studios](youtube.com/channel/UCkvU3bCv52TEPlf_8X2J6Qg)
 
 ## License
 
