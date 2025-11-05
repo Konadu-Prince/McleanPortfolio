@@ -369,3 +369,15 @@
         transform: scale(1.5) translateZ(0);
     }
 }
+
+/* Professional background blend effects */
+.hero-content,
+.contact-info,
+.contact-form,
+.stat,
+.skill {
+    /* Add a subtle shadow for depth */
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+    /* Add border for definition */
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}

@@ -206,8 +206,16 @@ function createParticles() {
 // Initialize particles when page loads
 window.addEventListener('load', createParticles);
 
-// Animate hero text on load
+// Hide preloader when page loads
 window.addEventListener('load', () => {
+    const preloader = document.querySelector('.preloader');
+    if (preloader) {
+        setTimeout(() => {
+            preloader.classList.add('hidden');
+        }, 1000);
+    }
+    
+    // Animate hero text on load
     const heroText = document.querySelector('.hero-content h1');
     if (heroText) {
         heroText.style.opacity = '0';
@@ -217,6 +225,6 @@ window.addEventListener('load', () => {
         setTimeout(() => {
             heroText.style.opacity = '1';
             heroText.style.transform = 'translateY(0)';
-        }, 500);
+        }, 1500);
     }
 });
