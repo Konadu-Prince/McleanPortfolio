@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Gyan Agyekum - Resume</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Resume specific styles */
+        .resume-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .resume-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .resume-header h1 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .resume-header p {
+            color: var(--gray-color);
+            font-size: 1.2rem;
+        }
+        
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        
+        .contact-item i {
+            color: var(--primary-color);
+            margin-top: 0.3rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 1rem;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .skill-category {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+        }
+        
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+        
+        .skill-item h4 {
+            margin-bottom: 0.3rem;
+        }
+        
+        .experience-item, .project-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .experience-item h3, .project-item h3 {
+            color: var(--dark-color);
+            margin-bottom: 0.3rem;
+        }
+        
+        .experience-item .company, .project-item .category {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .experience-item .date, .project-item .description {
+            color: var(--gray-color);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .print-btn {
+            display: block;
+            width: 200px;
+            margin: 2rem auto;
+            text-align: center;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .print-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(74, 108, 247, 0.3);
+        }
+        
+        @media print {
+            .print-btn {
+                display: none;
+            }
+            
+            body {
+                background: white;
+            }
+            
+            .resume-container {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <!-- Header -->
+        <div class="resume-header">
+            <h1>Christian Gyan Agyekum</h1>
+            <p>IT Professional & Creative Designer</p>
+        </div>
+        
+        <!-- Contact Information -->
+        <div class="contact-info-grid">
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <h4>Email</h4>
+                    <p>christiangyanagyekum@gmail.com</p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <h4>Phone</h4>
+                    <p>0241096942 / 0561888656 / 0504002693</p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                    <h4>Location</h4>
+                    <p>Accra, Ghana</p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-globe"></i>
+                <div>
+                    <h4>Website</h4>
+                    <p>konadu-prince.github.io/McleanPortfolio</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Professional Summary -->
+        <h2 class="section-title">Professional Summary</h2>
+        <p>Highly motivated and detail-driven Computer Science professional with a strong foundation in technology, innovation, and a passion for addressing Gender-Based Issues. Skilled in Network Administration, Database Management, Cybersecurity, Machine Learning, and Adobe Office Suite, with experience in 3D Visualization, Web Design, Cinematography, and strong analytical and problem-solving skills. Seeking a challenging role in IT that utilizes my skills and experience to drive innovation and positive change.</p>
+        
+        <!-- Skills -->
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Technical Skills</h3>
+                <div class="skill-item">
+                    <h4>Networking Administration</h4>
+                    <p>90% Proficiency</p>
+                </div>
+                <div class="skill-item">
+                    <h4>Database Management</h4>
+                    <p>85% Proficiency</p>
+                </div>
+                <div class="skill-item">
+                    <h4>Cybersecurity</h4>
+                    <p>80% Proficiency</p>
+                </div>
+                <div class="skill-item">
+                    <h4>Machine Learning</h4>
+                    <p>75% Proficiency</p>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h3>Creative Skills</h3>
+                <div class="skill-item">
+                    <h4>3D Visualization</h4>
+                    <p>95% Proficiency</p>
+                </div>
+                <div class="skill-item">
+                    <h4>Graphic Design</h4>
+                    <p>90% Proficiency</p>
+                </div>
+                <div class="skill-item">
+                    <h4>Web Design (Figma)</h4>
+                    <p>85% Proficiency</p>
+                </div>
+                <div class="skill-item">
+                    <h4>Cinematography</h4>
+                    <p>80% Proficiency</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Professional Experience -->
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="experience-item">
+            <h3>IT Professional & Creative Designer</h3>
+            <div class="company">Freelance | Accra, Ghana</div>
+            <ul>
+                <li>Developed robust and secure digital infrastructures through networking administration and database management</li>
+                <li>Created intelligent solutions using machine learning technologies</li>
+                <li>Produced stunning visual experiences through 3D visualization and cinematography</li>
+                <li>Designed engaging content for various digital platforms</li>
+                <li>Collaborated with diverse teams and clients, leveraging fluency in English, Twi, and Ga</li>
+            </ul>
+        </div>
+        
+        <!-- Portfolio Highlights -->
+        <h2 class="section-title">Portfolio Highlights</h2>
+        <div class="project-item">
+            <h3>3D Visualization Projects</h3>
+            <div class="category">3D Architectural Visualization</div>
+            <div class="description">Realistic rendering of modern office spaces</div>
+            <div class="category">Product Visualization</div>
+            <div class="description">3D modeling and rendering for consumer products</div>
+        </div>
+        
+        <div class="project-item">
+            <h3>Graphic Design Projects</h3>
+            <div class="category">Corporate Branding</div>
+            <div class="description">Complete brand identity for tech startups</div>
+            <div class="category">Event Poster Series</div>
+            <div class="description">Promotional materials for music festivals</div>
+        </div>
+        
+        <div class="project-item">
+            <h3>Web Design Projects</h3>
+            <div class="category">E-commerce Website</div>
+            <div class="description">Fully responsive online store design</div>
+            <div class="category">Portfolio Website</div>
+            <div class="description">Creative showcase for photographers</div>
+        </div>
+        
+        <div class="project-item">
+            <h3>Content Creation Projects</h3>
+            <div class="category">Social Media Campaigns</div>
+            <div class="description">Engaging content for brand awareness</div>
+            <div class="category">Digital Storytelling</div>
+            <div class="description">Creative narratives for audience engagement</div>
+        </div>
+        
+        <!-- Education -->
+        <h2 class="section-title">Education</h2>
+        <div class="experience-item">
+            <h3>Bachelor of Science in Computer Science</h3>
+            <div class="company">University of Cape Coast (UCC), Ghana</div>
+        </div>
+        
+        <!-- Languages -->
+        <h2 class="section-title">Languages</h2>
+        <ul>
+            <li>English (Fluent)</li>
+            <li>Twi (Fluent)</li>
+            <li>Ga (Fluent)</li>
+        </ul>
+        
+        <!-- Achievements -->
+        <h2 class="section-title">Key Achievements</h2>
+        <ul>
+            <li>5+ Years of Experience</li>
+            <li>30+ Projects Completed</li>
+            <li>15+ Happy Clients</li>
+        </ul>
+        
+        <a href="javascript:window.print()" class="print-btn">
+            <i class="fas fa-print"></i> Print Resume
+        </a>
+    </div>
+    
+    <script>
+        // Add any necessary JavaScript here
+        document.addEventListener('DOMContentLoaded', function() {
+            // Resume is ready
+        });
+    </script>
+</body>
+</html>
