@@ -31,6 +31,11 @@ filterBtns.forEach(btn => {
         portfolioItems.forEach(item => {
             if (filter === 'all' || item.getAttribute('data-category') === filter) {
                 item.style.display = 'block';
+                // Trigger animation when item becomes visible
+                item.style.animation = 'none';
+                setTimeout(() => {
+                    item.style.animation = 'slideInUp 0.5s ease-out';
+                }, 10);
             } else {
                 item.style.display = 'none';
             }
@@ -96,6 +101,18 @@ const animateOnScroll = () => {
         if (elementPosition < screenPosition) {
             element.style.opacity = 1;
             element.style.transform = 'translateY(0)';
+            
+            // Animate progress bars when they come into view
+            if (element.classList.contains('skill')) {
+                const progressBar = element.querySelector('.progress');
+                if (progressBar) {
+                    const width = progressBar.style.width || '0';
+                    progressBar.style.width = '0';
+                    setTimeout(() => {
+                        progressBar.style.width = width;
+                    }, 300);
+                }
+            }
         }
     });
 };
@@ -110,3 +127,96 @@ document.querySelectorAll('.skill, .stat, .portfolio-item').forEach(element => {
 // Trigger animations on scroll
 window.addEventListener('scroll', animateOnScroll);
 window.addEventListener('load', animateOnScroll);
+
+// Slideshow functionality
+let slideIndex = [];
+
+// Initialize slideIndex array for each slideshow
+document.querySelectorAll('.slideshow-container').forEach((container, index) => {
+    slideIndex[index] = 0;
+    showSlides(index);
+});
+
+function changeSlide(n, slideshowIndex) {
+    showSlides(slideshowIndex, slideIndex[slideshowIndex] += n);
+}
+
+function showSlides(slideshowIndex, n) {
+    let slides = document.querySelectorAll('.slideshow-container')[slideshowIndex].getElementsByClassName("slideshow-slide");
+    
+    if (n !== undefined) {
+        slideIndex[slideshowIndex] = n;
+    }
+    
+    if (slideIndex[slideshowIndex] >= slides.length) {
+        slideIndex[slideshowIndex] = 0;
+    }
+    
+    if (slideIndex[slideshowIndex] < 0) {
+        slideIndex[slideshowIndex] = slides.length - 1;
+    }
+    
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    
+    slides[slideIndex[slideshowIndex]].style.display = "block";
+}
+
+// Auto-advance slideshows
+setInterval(() => {
+    document.querySelectorAll('.slideshow-container').forEach((container, index) => {
+        showSlides(index, slideIndex[index] += 1);
+    });
+}, 5000);
+
+// Create floating particles for background
+function createParticles() {
+    const particlesContainer = document.createElement('div');
+    particlesContainer.className = 'particles-container';
+    document.body.appendChild(particlesContainer);
+    
+    const particleCount = 30;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        // Random size between 2px and 8px
+        const size = Math.random() * 6 + 2;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Random position
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        
+        // Random animation duration between 10s and 30s
+        const duration = Math.random() * 20 + 10;
+        particle.style.animationDuration = `${duration}s`;
+        
+        // Random delay
+        const delay = Math.random() * 5;
+        particle.style.animationDelay = `${delay}s`;
+        
+        particlesContainer.appendChild(particle);
+    }
+}
+
+// Initialize particles when page loads
+window.addEventListener('load', createParticles);
+
+// Animate hero text on load
+window.addEventListener('load', () => {
+    const heroText = document.querySelector('.hero-content h1');
+    if (heroText) {
+        heroText.style.opacity = '0';
+        heroText.style.transform = 'translateY(30px)';
+        heroText.style.transition = 'opacity 1s ease, transform 1s ease';
+        
+        setTimeout(() => {
+            heroText.style.opacity = '1';
+            heroText.style.transform = 'translateY(0)';
+        }, 500);
+    }
+});
