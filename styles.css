@@ -11,6 +11,14 @@
     --border-radius: 10px;
 }
 
+/* Improve text rendering */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "liga" 1;
+}
+
 /* Animated Background */
 body::before {
     content: "";
@@ -55,6 +63,10 @@ body::before {
     background: var(--primary-color);
     opacity: 0.2;
     animation: float 15s infinite linear;
+    /* Fix for text blur caused by 3D transforms */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
 }
 
 @keyframes float {
@@ -118,6 +130,9 @@ img {
     cursor: pointer;
     border: none;
     font-size: 1rem;
+    /* Fix for text blur on buttons */
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .btn.primary {
@@ -147,6 +162,9 @@ img {
     font-size: 2.5rem;
     margin-bottom: 3rem;
     position: relative;
+    /* Fix for text blur on section titles */
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .section-title::after {
@@ -172,6 +190,9 @@ header {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 1rem 0;
     transition: var(--transition);
+    /* Fix for text blur on header */
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 nav {
@@ -234,6 +255,9 @@ nav {
     align-items: center;
     position: relative;
     overflow: hidden;
+    /* Fix for text blur in hero section */
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .hero::before {
@@ -269,6 +293,9 @@ nav {
 .hero-content {
     flex: 1;
     animation: fadeInUp 1s ease-out;
+    /* Fix for text blur in hero content */
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 @keyframes fadeInUp {
@@ -286,6 +313,9 @@ nav {
     font-size: 3.5rem;
     margin-bottom: 1rem;
     line-height: 1.2;
+    /* Fix for text blur on large headings */
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .hero-content h1 span {
@@ -374,6 +404,8 @@ nav {
     max-width: 100%;
     height: auto;
     animation: floatImage 4s ease-in-out infinite;
+    /* Fix for image clarity */
+    image-rendering: -webkit-optimize-contrast;
 }
 
 @keyframes floatImage {
@@ -685,8 +717,9 @@ nav {
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
     user-select: none;
-    background: rgba(0,0,0,0.3);
-    backdrop-filter: blur(5px);
+    background: rgba(0,0,0,0.5);
+    /* Removed backdrop-filter to prevent text blur */
+    border: 1px solid rgba(255,255,255,0.2);
 }
 
 .slideshow-next {
