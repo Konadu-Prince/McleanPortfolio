@@ -722,11 +722,42 @@ header {
     padding: 6rem 0;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
     position: relative;
+    overflow: hidden;
+}
+
+.about::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 15% 25%, rgba(74, 108, 247, 0.03) 0%, transparent 25%),
+        radial-gradient(circle at 85% 75%, rgba(106, 90, 249, 0.03) 0%, transparent 25%);
+    z-index: 0;
+    pointer-events: none;
+    animation: gentlePulse 25s infinite ease-in-out;
+}
+
+.about::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        conic-gradient(from 45deg at 30% 40%, rgba(37, 99, 235, 0.02) 0deg, transparent 90deg),
+        conic-gradient(from 225deg at 70% 60%, rgba(124, 58, 237, 0.02) 0deg, transparent 90deg);
+    z-index: 0;
+    pointer-events: none;
+    animation: rotateSlow 30s infinite linear;
 }
 
 .about .container {
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .about-content {
@@ -823,11 +854,42 @@ header {
     padding: 6rem 0;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%);
     position: relative;
+    overflow: hidden;
+}
+
+.skills::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(245, 158, 11, 0.04) 0%, transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(37, 99, 235, 0.04) 0%, transparent 30%);
+    z-index: 0;
+    pointer-events: none;
+    animation: floatDiagonal 28s infinite ease-in-out;
+}
+
+.skills::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        conic-gradient(from 90deg at 25% 25%, rgba(124, 58, 237, 0.03) 0deg, transparent 120deg),
+        conic-gradient(from 270deg at 75% 75%, rgba(245, 158, 11, 0.03) 0deg, transparent 120deg);
+    z-index: 0;
+    pointer-events: none;
+    animation: driftLeftRight 32s infinite ease-in-out;
 }
 
 .skills .container {
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .skills-container {
@@ -938,6 +1000,42 @@ header {
     padding: 6rem 0;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
     position: relative;
+    overflow: hidden;
+}
+
+.portfolio::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 10% 15%, rgba(106, 90, 249, 0.05) 0%, transparent 35%),
+        radial-gradient(circle at 90% 85%, rgba(37, 99, 235, 0.05) 0%, transparent 35%);
+    z-index: 0;
+    pointer-events: none;
+    animation: floatBackground 35s infinite ease-in-out;
+}
+
+.portfolio::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        conic-gradient(from 180deg at 40% 30%, rgba(245, 158, 11, 0.04) 0deg, transparent 150deg),
+        conic-gradient(from 0deg at 60% 70%, rgba(124, 58, 237, 0.04) 0deg, transparent 150deg);
+    z-index: 0;
+    pointer-events: none;
+    animation: rotateSlow 40s infinite linear;
+}
+
+.portfolio .container {
+    position: relative;
+    z-index: 2;
 }
 
 .portfolio-filters {
@@ -1154,11 +1252,42 @@ header {
     padding: 6rem 0;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
     position: relative;
+    overflow: hidden;
+}
+
+.contact::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 25% 20%, rgba(37, 99, 235, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 75% 80%, rgba(245, 158, 11, 0.04) 0%, transparent 40%);
+    z-index: 0;
+    pointer-events: none;
+    animation: driftLeftRight 30s infinite ease-in-out;
+}
+
+.contact::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        conic-gradient(from 135deg at 35% 35%, rgba(124, 58, 237, 0.03) 0deg, transparent 180deg),
+        conic-gradient(from 315deg at 65% 65%, rgba(37, 99, 235, 0.03) 0deg, transparent 180deg);
+    z-index: 0;
+    pointer-events: none;
+    animation: gentlePulse 35s infinite ease-in-out;
 }
 
 .contact .container {
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .contact-container {
@@ -1332,6 +1461,37 @@ footer {
     padding: 5rem 0 2rem;
     position: relative;
     margin-top: 4rem;
+    overflow: hidden;
+}
+
+footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 15% 25%, rgba(74, 108, 247, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 85% 75%, rgba(106, 90, 249, 0.08) 0%, transparent 50%);
+    z-index: 0;
+    pointer-events: none;
+    animation: floatBackground 40s infinite ease-in-out;
+}
+
+footer::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        conic-gradient(from 60deg at 30% 40%, rgba(245, 158, 11, 0.06) 0deg, transparent 270deg),
+        conic-gradient(from 240deg at 70% 60%, rgba(37, 99, 235, 0.06) 0deg, transparent 270deg);
+    z-index: 0;
+    pointer-events: none;
+    animation: rotateSlow 45s infinite linear;
 }
 
 .footer-content {
