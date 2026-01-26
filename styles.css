@@ -36,47 +36,87 @@
 @keyframes floatBackground {
     0% {
         transform: translateY(0) translateX(0) rotate(0deg);
-        opacity: 0.05;
+        opacity: 0.08;
     }
     25% {
-        transform: translateY(-20px) translateX(10px) rotate(90deg);
+        transform: translateY(-30px) translateX(20px) rotate(90deg);
+        opacity: 0.12;
     }
     50% {
-        transform: translateY(-40px) translateX(20px) rotate(180deg);
-        opacity: 0.1;
+        transform: translateY(-60px) translateX(40px) rotate(180deg);
+        opacity: 0.15;
     }
     75% {
-        transform: translateY(-20px) translateX(10px) rotate(270deg);
+        transform: translateY(-30px) translateX(20px) rotate(270deg);
+        opacity: 0.12;
     }
     100% {
         transform: translateY(0) translateX(0) rotate(360deg);
-        opacity: 0.05;
+        opacity: 0.08;
     }
 }
 
 @keyframes driftLeftRight {
     0%, 100% {
         transform: translateX(0) translateY(0);
+        opacity: 0.1;
     }
     25% {
-        transform: translateX(-15px) translateY(-10px);
+        transform: translateX(-25px) translateY(-15px);
+        opacity: 0.15;
     }
     50% {
-        transform: translateX(0) translateY(-20px);
+        transform: translateX(0) translateY(-30px);
+        opacity: 0.18;
     }
     75% {
-        transform: translateX(15px) translateY(-10px);
+        transform: translateX(25px) translateY(-15px);
+        opacity: 0.15;
     }
 }
 
 @keyframes gentlePulse {
     0%, 100% {
         transform: scale(1) rotate(0deg);
-        opacity: 0.08;
+        opacity: 0.12;
     }
     50% {
-        transform: scale(1.2) rotate(180deg);
+        transform: scale(1.3) rotate(180deg);
+        opacity: 0.2;
+    }
+}
+
+@keyframes floatDiagonal {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0.1;
+    }
+    33% {
+        transform: translateY(-40px) translateX(30px) rotate(120deg);
         opacity: 0.15;
+    }
+    66% {
+        transform: translateY(-80px) translateX(60px) rotate(240deg);
+        opacity: 0.18;
+    }
+    100% {
+        transform: translateY(-120px) translateX(90px) rotate(360deg);
+        opacity: 0.1;
+    }
+}
+
+@keyframes rotateSlow {
+    0% {
+        transform: rotate(0deg) scale(1);
+        opacity: 0.12;
+    }
+    50% {
+        transform: rotate(180deg) scale(1.1);
+        opacity: 0.18;
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+        opacity: 0.12;
     }
 }
 
@@ -218,10 +258,8 @@ body::after {
 
 .background-element {
     position: absolute;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    opacity: 0.06;
     pointer-events: none;
+    z-index: -1;
 }
 
 .bg-circle-1 {
@@ -229,6 +267,9 @@ body::after {
     height: 120px;
     top: 15%;
     left: 5%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    opacity: 0.12;
     animation: floatBackground 25s infinite ease-in-out;
 }
 
@@ -237,8 +278,35 @@ body::after {
     height: 80px;
     top: 60%;
     left: 85%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    opacity: 0.15;
     animation: floatBackground 30s infinite ease-in-out;
     animation-delay: -5s;
+}
+
+.bg-circle-3 {
+    width: 100px;
+    height: 100px;
+    top: 35%;
+    left: 25%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+    opacity: 0.1;
+    animation: floatDiagonal 35s infinite ease-in-out;
+    animation-delay: -12s;
+}
+
+.bg-circle-4 {
+    width: 90px;
+    height: 90px;
+    top: 80%;
+    left: 65%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    opacity: 0.13;
+    animation: floatDiagonal 28s infinite ease-in-out;
+    animation-delay: -18s;
 }
 
 .bg-triangle {
@@ -247,18 +315,31 @@ body::after {
     border-left: 40px solid transparent;
     border-right: 40px solid transparent;
     border-bottom: 70px solid var(--primary-color);
-    opacity: 0.04;
+    opacity: 0.08;
     top: 25%;
     left: 75%;
     animation: driftLeftRight 20s infinite ease-in-out;
     animation-delay: -10s;
 }
 
+.bg-triangle-2 {
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 50px solid var(--secondary-color);
+    opacity: 0.1;
+    top: 70%;
+    left: 10%;
+    animation: driftLeftRight 24s infinite ease-in-out;
+    animation-delay: -16s;
+}
+
 .bg-square {
     width: 60px;
     height: 60px;
     background: var(--secondary-color);
-    opacity: 0.05;
+    opacity: 0.1;
     top: 75%;
     left: 15%;
     animation: driftLeftRight 22s infinite ease-in-out;
@@ -266,15 +347,39 @@ body::after {
     transform: rotate(45deg);
 }
 
+.bg-square-2 {
+    width: 70px;
+    height: 70px;
+    background: var(--accent-color);
+    opacity: 0.09;
+    top: 10%;
+    left: 40%;
+    animation: rotateSlow 26s infinite ease-in-out;
+    animation-delay: -20s;
+    transform: rotate(45deg);
+}
+
 .bg-diamond {
     width: 50px;
     height: 50px;
     background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
-    opacity: 0.07;
+    opacity: 0.12;
     top: 40%;
     left: 45%;
     animation: gentlePulse 18s infinite ease-in-out;
     animation-delay: -8s;
+    transform: rotate(45deg);
+}
+
+.bg-diamond-2 {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    opacity: 0.11;
+    top: 20%;
+    left: 80%;
+    animation: gentlePulse 22s infinite ease-in-out;
+    animation-delay: -14s;
     transform: rotate(45deg);
 }
 
