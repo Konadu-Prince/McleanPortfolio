@@ -1,84 +1,113 @@
-# Deployment Guide for GitHub Pages
+# Portfolio Deployment Guide
 
-This guide will help you deploy your portfolio website to GitHub Pages.
+## Running the Portfolio Locally
 
-## Prerequisites
+### Method 1: Python Built-in Server (Any Port)
 
-1. A GitHub account
-2. Your portfolio files (already in this repository)
+You can run the portfolio website on any port using the built-in Python server:
 
-## Deployment Steps
+```bash
+# Run on default port 8000
+python -m http.server
 
-1. **Create a new repository on GitHub:**
-   - Go to [GitHub](https://github.com) and sign in
-   - Click the "+" icon in the top right corner and select "New repository"
-   - Give your repository a name (e.g., `mclean-portfolio`)
-   - Set the repository to "Public"
-   - Do NOT initialize with a README (we'll push the existing files)
-   - Click "Create repository"
+# Run on a specific port (e.g., 8080)
+python -m http.server 8080
 
-2. **Push your code to GitHub:**
-   - If you haven't already, initialize git in your project folder:
-     ```
-     git init
-     git add .
-     git commit -m "Initial commit"
-     ```
-   - Add the remote origin (replace `your-username` with your GitHub username):
-     ```
-     git remote add origin https://github.com/your-username/repository-name.git
-     ```
-   - Push to GitHub:
-     ```
-     git push -u origin main
-     ```
+# Using the custom server script
+python server.py
+# Or with a specific port
+python server.py --port 3000
+```
 
-3. **Enable GitHub Pages:**
-   - Go to your repository on GitHub
-   - Click on "Settings" tab
-   - Scroll down to the "Pages" section
-   - Under "Source", select "Deploy from a branch"
-   - Select "main" branch and "/ (root)" folder
-   - Click "Save"
+### Method 2: Using the Custom Server Script
 
-4. **Access your website:**
-   - After a few minutes, your website will be available at:
-     `https://[your-username].github.io/[repository-name]/`
+We've included a custom server script with additional features:
 
-## Custom Domain (Optional)
+```bash
+# Run on default port (8000)
+python server.py
 
-If you want to use a custom domain:
+# Run on a specific port
+python server.py --port 9000
 
-1. In the GitHub repository settings, go to the "Pages" section
-2. In the "Custom domain" field, enter your domain (e.g., `www.yourdomain.com`)
-3. Click "Save"
-4. Update your domain's DNS settings to point to GitHub Pages:
-   - Add an A record pointing to:
-     - 185.199.108.153
-     - 185.199.109.153
-     - 185.199.110.153
-     - 185.199.111.153
-   - Or add a CNAME record pointing to `[your-username].github.io`
+# Bind to a specific address
+python server.py --bind 127.0.0.1 --port 3000
+```
 
-## Updating Your Website
+## Hosting Options
 
-To update your website after making changes:
+### GitHub Pages (Free)
+1. Push your code to a GitHub repository
+2. Go to repository Settings > Pages
+3. Select source (usually `/ (root)` or `/docs`)
+4. Your site will be available at `https://yourusername.github.io/repository-name`
 
-1. Commit your changes:
-   ```
-   git add .
-   git commit -m "Description of changes"
-   ```
-2. Push to GitHub:
-   ```
-   git push origin main
-   ```
+### Other Free Hosting Options
+- Netlify: Drag and drop your files
+- Vercel: Connect to your Git repository
+- Firebase Hosting: Use the Firebase CLI
+- Surge: Command-line deployment tool
 
-Your website will automatically update within a few minutes.
+## File Structure
+```
+McleanPortfolio/
+├── index.html          # Main portfolio page
+├── styles.css          # Main styles
+├── animations.css      # Animation styles
+├── preloader.css       # Preloader styles
+├── script.js           # JavaScript functionality
+├── images/             # Portfolio images
+│   ├── 3D categories/
+│   ├── graphicDesigns/
+│   └── GyanProfilePhoto.jpg
+├── resume.html         # Resume page
+├── 404.html            # Custom 404 page
+├── server.py           # Local server script
+└── README.md           # Project documentation
+```
+
+## Performance Tips
+
+1. **Image Optimization**: Ensure images are compressed for web
+2. **Minification**: Minify CSS and JavaScript for production
+3. **CDN**: Consider using a CDN for static assets
+4. **Caching**: Leverage browser caching with proper headers
+
+## Customization
+
+### Updating Personal Information
+- Edit `index.html` for main content
+- Update `resume.html` for detailed resume
+- Modify `styles.css` for styling changes
+
+### Adding Portfolio Items
+- Add new images to the appropriate folders in `/images/`
+- Update the portfolio section in `index.html`
+- Adjust the filtering functionality in `script.js` if needed
 
 ## Troubleshooting
 
-- If your website isn't updating, check the "Actions" tab in your repository for any build errors
-- Make sure your files are in the root directory of your repository
-- Ensure your `index.html` file is in the root directory
-- Check that you've selected the correct branch in the Pages settings
+### Common Issues
+- **Images not loading**: Check file paths in HTML and ensure images are in correct directories
+- **Scripts not working**: Verify JavaScript file paths and browser console for errors
+- **Styles broken**: Check CSS file paths and ensure all stylesheets are linked properly
+
+### Port Conflicts
+If you get a "port already in use" error:
+1. Try a different port number
+2. Kill the process using the port:
+   ```bash
+   # On Windows
+   netstat -ano | findstr :PORT_NUMBER
+   taskkill /PID PROCESS_ID /F
+   
+   # On Mac/Linux
+   lsof -i :PORT_NUMBER
+   kill -9 PROCESS_ID
+   ```
+
+## Security Headers
+The custom server includes security headers:
+- X-Content-Type-Options: nosniff
+- X-Frame-Options: DENY
+- X-XSS-Protection: 1; mode=block

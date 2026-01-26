@@ -1,0 +1,32 @@
+{
+  "name": "mclean-portfolio",
+  "version": "1.0.0",
+  "description": "Professional portfolio website for Christian Gyan Agyekum",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "python server.py",
+    "dev": "python server.py --port 3000",
+    "preview": "python server.py --port 5000",
+    "node-server": "node server.js",
+    "node-dev": "node server.js 3000"
+  },
+  "keywords": [
+    "portfolio",
+    "website",
+    "personal",
+    "professional",
+    "design",
+    "creative"
+  ],
+  "author": "Christian Gyan Agyekum",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

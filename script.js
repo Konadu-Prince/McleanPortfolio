@@ -5,6 +5,10 @@ const navLinks = document.querySelector('.nav-links');
 hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('active');
     hamburger.classList.toggle('toggle');
+    
+    // Accessibility: Update ARIA attributes
+    const isOpen = navLinks.classList.contains('active');
+    hamburger.setAttribute('aria-expanded', isOpen);
 });
 
 // Close mobile menu when clicking on a link
@@ -12,6 +16,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
         navLinks.classList.remove('active');
         hamburger.classList.remove('toggle');
+        hamburger.setAttribute('aria-expanded', 'false');
     });
 });
 
@@ -22,20 +27,21 @@ const portfolioItems = document.querySelectorAll('.portfolio-item');
 filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         // Remove active class from all buttons
-        filterBtns.forEach(b => b.classList.remove('active'));
+        filterBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-pressed', 'false');
+        });
+        
         // Add active class to clicked button
         btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
         
         const filter = btn.getAttribute('data-filter');
         
         portfolioItems.forEach(item => {
             if (filter === 'all' || item.getAttribute('data-category') === filter) {
                 item.style.display = 'block';
-                // Trigger animation when item becomes visible
-                item.style.animation = 'none';
-                setTimeout(() => {
-                    item.style.animation = 'slideInUp 0.5s ease-out';
-                }, 10);
+                // REMOVED animation that could cause blur
             } else {
                 item.style.display = 'none';
             }
@@ -54,28 +60,140 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 top: target.offsetTop - 70,
                 behavior: 'smooth'
             });
+            
+            // Accessibility: Focus the target element
+            target.setAttribute('tabindex', '-1');
+            target.focus({preventScroll: true});
+            target.removeAttribute('tabindex');
         }
     });
 });
 
-// Form Submission
+// Enhanced Form Validation
 const contactForm = document.getElementById('portfolio-contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
         // Get form values
-        const name = this.querySelector('input[type="text"]').value;
-        const email = this.querySelector('input[type="email"]').value;
-        const message = this.querySelector('textarea').value;
+        const name = this.querySelector('#name').value;
+        const email = this.querySelector('#email').value;
+        const subject = this.querySelector('#subject').value;
+        const message = this.querySelector('#message').value;
         
-        // In a real application, you would send this data to a server
-        // For now, we'll just show an alert
-        alert(`Thank you for your message, ${name}! I'll get back to you soon.`);
+        // Validate form
+        let isValid = true;
         
-        // Reset form
-        this.reset();
+        // Name validation
+        if (!name.trim()) {
+            showError('name', 'Please enter your name');
+            isValid = false;
+        } else {
+            hideError('name');
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showError('email', 'Please enter a valid email address');
+            isValid = false;
+        } else {
+            hideError('email');
+        }
+        
+        // Message validation
+        if (!message.trim()) {
+            showError('message', 'Please enter your message');
+            isValid = false;
+        } else {
+            hideError('message');
+        }
+        
+        if (isValid) {
+            // In a real application, you would send this data to a server
+            // For now, we'll just show an alert
+            alert(`Thank you for your message, ${name}! I'll get back to you soon.`);
+            
+            // Reset form
+            this.reset();
+        }
     });
+    
+    // Real-time validation
+    const inputs = contactForm.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            validateField(this);
+        });
+        
+        input.addEventListener('input', function() {
+            if (this.dataset.errorShown) {
+                validateField(this);
+            }
+        });
+    });
+}
+
+function validateField(field) {
+    const fieldName = field.id;
+    let isValid = true;
+    let errorMessage = '';
+    
+    switch(fieldName) {
+        case 'name':
+            if (!field.value.trim()) {
+                errorMessage = 'Please enter your name';
+                isValid = false;
+            }
+            break;
+        case 'email':
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(field.value)) {
+                errorMessage = 'Please enter a valid email address';
+                isValid = false;
+            }
+            break;
+        case 'message':
+            if (!field.value.trim()) {
+                errorMessage = 'Please enter your message';
+                isValid = false;
+            }
+            break;
+    }
+    
+    if (isValid) {
+        hideError(fieldName);
+    } else {
+        showError(fieldName, errorMessage);
+    }
+}
+
+function showError(fieldName, message) {
+    const errorElement = document.getElementById(`${fieldName}-error`);
+    if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+    }
+    
+    const field = document.getElementById(fieldName);
+    if (field) {
+        field.dataset.errorShown = 'true';
+        field.setAttribute('aria-invalid', 'true');
+    }
+}
+
+function hideError(fieldName) {
+    const errorElement = document.getElementById(`${fieldName}-error`);
+    if (errorElement) {
+        errorElement.textContent = '';
+        errorElement.style.display = 'none';
+    }
+    
+    const field = document.getElementById(fieldName);
+    if (field) {
+        delete field.dataset.errorShown;
+        field.setAttribute('aria-invalid', 'false');
+    }
 }
 
 // Header scroll effect
@@ -90,7 +208,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Animation on scroll
+// Animation on scroll - REMOVED to prevent blur
 const animateOnScroll = () => {
     const elements = document.querySelectorAll('.skill, .stat, .portfolio-item');
     
@@ -100,7 +218,7 @@ const animateOnScroll = () => {
         
         if (elementPosition < screenPosition) {
             element.style.opacity = 1;
-            element.style.transform = 'translateY(0)';
+            element.style.transform = 'none'; // REMOVED transform to prevent blur
             
             // Animate progress bars when they come into view
             if (element.classList.contains('skill')) {
@@ -117,11 +235,10 @@ const animateOnScroll = () => {
     });
 };
 
-// Set initial state for animated elements
+// REMOVED initial state setup that used transforms
 document.querySelectorAll('.skill, .stat, .portfolio-item').forEach(element => {
-    element.style.opacity = 0;
-    element.style.transform = 'translateY(20px)';
-    element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    element.style.opacity = 1; // SET to 1 to avoid initial opacity animation
+    element.style.transform = 'none'; // REMOVED transform to prevent blur
 });
 
 // Trigger animations on scroll
@@ -170,41 +287,14 @@ setInterval(() => {
     });
 }, 5000);
 
+// REMOVED particle creation that could cause performance issues and blur
 // Create floating particles for background
 function createParticles() {
-    const particlesContainer = document.createElement('div');
-    particlesContainer.className = 'particles-container';
-    document.body.appendChild(particlesContainer);
-    
-    const particleCount = 30;
-    
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        
-        // Random size between 2px and 8px
-        const size = Math.random() * 6 + 2;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        
-        // Random position
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.top = `${Math.random() * 100}%`;
-        
-        // Random animation duration between 10s and 30s
-        const duration = Math.random() * 20 + 10;
-        particle.style.animationDuration = `${duration}s`;
-        
-        // Random delay
-        const delay = Math.random() * 5;
-        particle.style.animationDelay = `${delay}s`;
-        
-        particlesContainer.appendChild(particle);
-    }
+    // REMOVED particle creation to prevent blur and improve performance
 }
 
 // Initialize particles when page loads
-window.addEventListener('load', createParticles);
+// REMOVED particle initialization
 
 // Hide preloader when page loads
 window.addEventListener('load', () => {
@@ -215,16 +305,22 @@ window.addEventListener('load', () => {
         }, 1000);
     }
     
-    // Animate hero text on load
-    const heroText = document.querySelector('.hero-content h1');
-    if (heroText) {
-        heroText.style.opacity = '0';
-        heroText.style.transform = 'translateY(30px)';
-        heroText.style.transition = 'opacity 1s ease, transform 1s ease';
-        
-        setTimeout(() => {
-            heroText.style.opacity = '1';
-            heroText.style.transform = 'translateY(0)';
-        }, 1500);
+    // REMOVED hero text animation that could cause blur
+});
+
+// Accessibility: Add keyboard support for slideshow controls
+document.addEventListener('keydown', function(e) {
+    // Only process keys when slideshow controls have focus
+    if (e.target.closest('.slideshow-container')) {
+        if (e.key === 'ArrowLeft') {
+            // Find which slideshow container this belongs to
+            const container = e.target.closest('.slideshow-container');
+            const index = Array.from(document.querySelectorAll('.slideshow-container')).indexOf(container);
+            changeSlide(-1, index);
+        } else if (e.key === 'ArrowRight') {
+            const container = e.target.closest('.slideshow-container');
+            const index = Array.from(document.querySelectorAll('.slideshow-container')).indexOf(container);
+            changeSlide(1, index);
+        }
     }
 });

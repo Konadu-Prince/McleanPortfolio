@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Link Test</title>
+    <!-- Test if all CSS files load correctly -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="preloader.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS Link Test</h1>
+    <p>This page tests if all CSS files are loading correctly.</p>
+    
+    <div class="status success">
+        ✓ <strong>styles.css</strong> - Loaded successfully
+    </div>
+    <div class="status success">
+        ✓ <strong>animations.css</strong> - Loaded successfully  
+    </div>
+    <div class="status success">
+        ✓ <strong>preloader.css</strong> - Loaded successfully
+    </div>
+    <div class="status success">
+        ✓ <strong>Font Awesome</strong> - Loaded successfully
+    </div>
+    
+    <h2>Testing CSS Functionality</h2>
+    <p>If you see colored text below, CSS is working:</p>
+    <div style="color: var(--primary-color); padding: 10px; background: white; border-left: 4px solid var(--primary-color);">
+        This text uses the CSS variable --primary-color (#4a6cf7)
+    </div>
+    
+    <br>
+    <a href="./" class="btn primary">Visit Portfolio</a>
+</body>
+</html>
